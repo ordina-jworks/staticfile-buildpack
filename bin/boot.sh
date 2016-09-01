@@ -35,3 +35,14 @@ cat < $APP_ROOT/nginx/logs/access.log &
 exec $APP_ROOT/nginx/sbin/nginx -p $APP_ROOT/nginx -c $APP_ROOT/nginx/conf/nginx.conf
 
 # ------------------------------------------------------------------------------------------------
+
+mkfifo $APP_ROOT/oauth2_proxy/logs/access.log
+mkfifo $APP_ROOT/oauth2_proxy/logs/error.log
+
+cat < $APP_ROOT/oauth2_proxy/logs/access.log &
+(>&2 cat) < $APP_ROOT/oauth2_proxy/logs/error.log &
+
+exec $APP_ROOT/oauth2_proxy/oauth2_proxy --config=$APP_ROOT/oauth2_proxy/oauth2_proxy.cfg --github-org=$GITHUB_ORG --http-address=":$PORT"
+
+# ------------------------------------------------------------------------------------------------
+
