@@ -98,4 +98,4 @@ tar xzf $oauth2_proxy_tar_file
 mv oauth2_proxy-2.1.linux-amd64.go1.6 oauth2_proxy
 
 cp -f $compile_buildpack_dir/conf/oauth2_proxy.cfg oauth2_proxy/oauth2_proxy.cfg
-[[ -f $build_dir/public/oauth2_proxy.cfg ]] && mv $build_dir/public/oauth2_proxy.cfg oauth2_proxy/oauth2_proxy.cfg
+#[[ -f $build_dir/public/oauth2_proxy.cfg ]] && mv $build_dir/public/oauth2_proxy.cfg oauth2_proxy/oauth2_proxy.cfg
