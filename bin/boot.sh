@@ -12,6 +12,8 @@
 # and  limitations under the License.
 # ------------------------------------------------------------------------------------------------
 
+set -x          # enable debugging
+
 export APP_ROOT=$HOME
 export LD_LIBRARY_PATH=$APP_ROOT/nginx/lib:$LD_LIBRARY_PATH
 
@@ -32,6 +34,23 @@ mkfifo $APP_ROOT/nginx/logs/error.log
 cat < $APP_ROOT/nginx/logs/access.log &
 (>&2 cat) < $APP_ROOT/nginx/logs/error.log &
 
-exec $APP_ROOT/nginx/sbin/nginx -p $APP_ROOT/nginx -c $APP_ROOT/nginx/conf/nginx.conf
+exec $APP_ROOT/nginx/sbin/nginx -p $APP_ROOT/nginx -c $APP_ROOT/nginx/conf/nginx.conf &
 
 # ------------------------------------------------------------------------------------------------
+
+mkfifo $APP_ROOT/oauth2_proxy/logs/access.log
+mkfifo $APP_ROOT/oauth2_proxy/logs/error.log
+
+cat < $APP_ROOT/oauth2_proxy/logs/access.log &
+(>&2 cat) < $APP_ROOT/oauth2_proxy/logs/error.log &
+
+exec $APP_ROOT/oauth2_proxy/oauth2_proxy \
+    --config="$APP_ROOT/oauth2_proxy/oauth2_proxy.cfg" \
+    --github-org="$OAUTH2_GITHUB_ORG" \
+    --http-address="http://:$PORT" \
+    --upstream="http://127.0.0.1:$APPLICATION_PORT" \
+    --email-domain="*" \
+    --provider="$OAUTH2_PROVIDER"
+
+# ------------------------------------------------------------------------------------------------
+
