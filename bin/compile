@@ -1,102 +1,13 @@
-#!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir>
+#!/bin/bash
+set -euo pipefail
 
-set -e            # fail fast
-set -o pipefail   # do not ignore exit codes when piping output
-# set -x          # enable debugging
+BUILD_DIR=$1
+CACHE_DIR=$2
+export BUILDPACK_DIR=`dirname $(readlink -f ${BASH_SOURCE%/*})`
+export DEPS_DIR="$BUILD_DIR/.cloudfoundry"
+mkdir -p "$DEPS_DIR/0"
+mkdir -p "$BUILD_DIR/.profile.d"
+echo "export DEPS_DIR=\$HOME/.cloudfoundry" > "$BUILD_DIR/.profile.d/0000_set-deps-dir.sh"
 
-# Configure directories
-build_dir=$1
-cache_dir=$2
-
-compile_buildpack_dir=$(cd $(dirname $0); cd ..; pwd)
-compile_buildpack_bin=$compile_buildpack_dir/bin
-$compile_buildpack_dir/compile-extensions/bin/check_stack_support
-
-# Load some convenience functions like status(), echo(), and indent()
-source $compile_buildpack_dir/bin/common.sh
-
-BUILDPACK_PATH=$compile_buildpack_dir source $compile_buildpack_dir/compile-extensions/lib/common
-
-translated_url=$($compile_buildpack_dir/compile-extensions/bin/download_dependency nginx.tgz /tmp)
-echo "Downloaded [$translated_url]"
-compile_nginx_tgz="/tmp/nginx.tgz"
-cd $build_dir
-
-# Alternate root location (default is root of project) for html/js/css
-# root: dist/
-if [[ -e "Staticfile" && "$(grep 'root:' Staticfile)X" != "X" ]]; then
-  root_dir=$(grep 'root:' Staticfile | sed -e 's/^root: *//;s/\s*$//')
-  status "Root folder $root_dir"
-else
-  status "Using root folder"
-fi
-root_dir=${root_dir:-.}
-if [[ ! -e ${root_dir} ]] ; then
-  error "the application Staticfile specifies a root directory \`${root_dir}\` that does not exist"
-fi
-if [[ ! -d ${root_dir} ]] ; then
-  error "the application Staticfile specifies a root directory \`${root_dir}\` that is a plain file, but was expected to be a directory"
-fi
-
-status "Copying project files into public/"
-shopt -s extglob
-root_dir_absolute=`cd $root_dir 2>/dev/null && pwd -P`
-if [ ${build_dir}/public != ${root_dir_absolute} ]; then
-  tmp_dir=`mktemp -d /tmp/XXXXX`
-  mv $root_dir_absolute/!(Staticfile|Staticfile.auth|manifest.yml|stackato.yml) $tmp_dir || true
-  rm -rf $build_dir/public
-  mv $tmp_dir  $build_dir/public
-fi
-shopt -u extglob
-
-
-
-status "Setting up nginx"
-tar xzf $compile_nginx_tgz
-cp -f $compile_buildpack_dir/conf/nginx.conf nginx/conf/nginx.conf
-cp -f $compile_buildpack_dir/conf/mime.types nginx/conf/mime.types
-
-[[ -f $build_dir/public/nginx.conf ]] && mv $build_dir/public/nginx.conf nginx/conf/nginx.conf
-[[ -f $build_dir/public/mime.types ]] && mv $build_dir/public/mime.types nginx/conf/mime.types
-
-if [[ -f Staticfile.auth ]]; then
-  status "Enabling basic authentication"
-  mv Staticfile.auth nginx/conf/.htpasswd
-  cat nginx/conf/.htpasswd | indent
-  echo
-  protip "Learn about basic authentication" "https://github.com/cloudfoundry/staticfile-buildpack#basic-authentication"
-fi
-
-# Enable directory index
-if [[ -e "Staticfile" && "$(grep 'directory:' Staticfile)X" != "X" ]]; then
-  status "Enabling directory index for folders without index.html files"
-  touch nginx/conf/.enable_directory_index
-fi
-
-# Enable ssi module
-if [[ -e "Staticfile" && "$(grep 'ssi: enabled' Staticfile)X" != "X" ]]; then
-  status "Enabling ssi"
-  touch nginx/conf/.enable_ssi
-fi
-
-# Enable pushstate module
-if [[ -e "Staticfile" && "$(grep 'pushstate: enabled' Staticfile)X" != "X" ]]; then
-  status "Enabling pushstate"
-  touch nginx/conf/.enable_pushstate
-fi
-
-cp $compile_buildpack_bin/boot.sh .
-
-
-url=https://github.com/bitly/oauth2_proxy/releases/download/v2.1/oauth2_proxy-2.1.linux-amd64.go1.6.tar.gz
-oauth2_proxy_tar_file=/tmp/oauth2_proxy.tar.gz
-curl -s -L $url -o $oauth2_proxy_tar_file
-echo "Downloaded [$url]"
-cd $build_dir
-tar xzf $oauth2_proxy_tar_file
-mv oauth2_proxy-2.1.linux-amd64.go1.6 oauth2_proxy
-mkdir oauth2_proxy/logs
-
-cp -f $compile_buildpack_dir/conf/oauth2_proxy.cfg oauth2_proxy/oauth2_proxy.cfg
-#[[ -f $build_dir/public/oauth2_proxy.cfg ]] && mv $build_dir/public/oauth2_proxy.cfg oauth2_proxy/oauth2_proxy.cfg
+$BUILDPACK_DIR/bin/supply "$BUILD_DIR" "$CACHE_DIR" "$DEPS_DIR" 0
+$BUILDPACK_DIR/bin/finalize "$BUILD_DIR" "$CACHE_DIR" "$DEPS_DIR" 0

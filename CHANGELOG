@@ -1,3 +1,540 @@
+v1.5.0 Oct 10, 2019
+=====================
+
+* Remove cflinuxfs2 dependencies
+  (https://www.pivotaltracker.com/story/show/166710436)
+
+v1.4.45 Sep 30, 2019
+=====================
+
+* Remove nginx for cflinuxfs2
+   - Fixes #159
+  (https://www.pivotaltracker.com/story/show/166710436)
+
+* Includes new secure_app fixture that gets an A+ from Mozilla Observatory
+  (https://www.pivotaltracker.com/story/show/165481690)
+
+* Add nginx 1.17.4, remove nginx 1.17.3
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/168729882)
+
+* add absolute_redirect off; to prevent directory redirects from https to http
+  (https://www.pivotaltracker.com/story/show/168343288)
+
+* Removes nginx 1.15.x because it is depricated
+  (https://www.pivotaltracker.com/story/show/167241884)
+
+
+v1.4.44 Aug 27, 2019
+=====================
+
+* Add nginx 1.17.3, remove nginx 1.17.0
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/167876323)
+  (https://www.pivotaltracker.com/story/show/167456240)
+  (https://www.pivotaltracker.com/story/show/166900660)
+
+* Merge pull request #158 from seymurfarziyev/develop
+  downloaded and installed libbuildpack-dynatrace release v1.2.1
+
+* fix wrong key names in deprecation dates
+
+* Fix misformatted deprecation date
+
+* downloaded and installed libbuildpack-dynatrace release v1.2.1
+
+
+v1.4.43 Jun 05, 2019
+=====================
+
+* Change default nginx version to 1.15.x
+  (https://www.pivotaltracker.com/story/show/166292306)
+
+* Add nginx 1.17.0
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/166292306)
+
+v1.4.42 Apr 23, 2019
+=====================
+
+* Remove warning logs causing bosh cli error
+
+* Add nginx 1.15.12, remove nginx 1.15.10
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/165387664)
+
+v1.4.41 Apr 02, 2019
+=====================
+
+* Add nginx 1.15.10, remove nginx 1.15.9
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/164899138)
+
+v1.4.40 Mar 01, 2019
+=====================
+
+* Add nginx 1.15.9, remove nginx 1.15.8
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/164249501)
+
+* Add source and source_sha256 to buildpack manifest
+  (https://www.pivotaltracker.com/story/show/163711928)
+
+* Serve .js files as application/javascript
+  (https://www.pivotaltracker.com/story/show/161478383)
+
+* Update go used to compile buildpack from source to 1.11.5
+  (https://www.pivotaltracker.com/story/show/163701450)
+
+v1.4.39 Jan 23, 2019
+=====================
+
+* Use built version of go 1.11.4 in online unbuilt/URL buildpack
+  (https://www.pivotaltracker.com/story/show/163089977)
+
+v1.4.38 Jan 17, 2019
+=====================
+
+* Vendor with go modules
+  - Fix performance regression when the buildpack is executed
+    directly from github by re-vendoring source code
+  (https://www.pivotaltracker.com/story/show/162654926)
+
+
+v1.4.37 Dec 31, 2018
+=====================
+
+* Add nginx 1.15.8, remove nginx 1.15.7
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/162839811)
+
+commit 513f145d5f567f9b15245196a52661bc343bbf82
+Author: Danny Joyce <djoyce@pivotal.io>
+Date:   Fri Dec 7 11:00:04 2018 -0500
+
+    Add ginkgo "compilers=1" flag in attempt to fix go mod download issues
+
+
+* Install ginkgo and packager with go 1.11
+  (https://www.pivotaltracker.com/story/show/161601715)
+
+* Migrate to go modules.
+  (https://www.pivotaltracker.com/story/show/161601715)
+
+
+v1.4.36 Dec 06, 2018
+=====================
+
+* Add nginx 1.15.7, remove nginx 1.15.6
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/162240857)
+
+
+v1.4.35 Nov 19, 2018
+=====================
+
+* Add nginx 1.15.6, remove nginx 1.15.5
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/161755150)
+
+v1.4.34 Oct 29, 2018
+=====================
+
+* Changes include headers to allow for a root directory
+  - don't copy nginx to public during staging
+  (https://www.pivotaltracker.com/story/show/156479950)
+
+v1.4.33 Oct 15, 2018
+=====================
+
+* Add nginx 1.15.5, remove nginx 1.15.3
+  for stack(s) cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/160928056)
+  (https://www.pivotaltracker.com/story/show/160793492)
+
+
+v1.4.32 Sep 07, 2018
+=====================
+
+* Add nginx 1.15.3, remove nginx 1.15.2
+  for stacks cflinuxfs2, cflinuxfs3
+  (https://www.pivotaltracker.com/story/show/160100616)
+
+* Preserves x_forwarded_host on https
+  Closes #141. Updates .ForceHTTPS block to preserve the
+  x-forwarded-host on https redirects.
+  (https://www.pivotaltracker.com/story/show/156376954)
+
+v1.4.31 Jul 27, 2018
+=====================
+
+* Rebuild nginx 1.15.2
+  for stacks cflinuxfs2, cflinuxfs3 [#159272821]
+
+
+v1.4.30 Jul 20, 2018
+=====================
+
+* Default nginx version changed to 1.15.x.
+  (https://www.pivotaltracker.com/story/show/158800160)
+
+* Add nginx 1.15.1, remove nginx 1.15.0
+  (https://www.pivotaltracker.com/story/show/158800160)
+
+v1.4.29 Jun 25, 2018
+=====================
+
+* Merge pull request #147 from christopherclark/master
+  Update LICENSE
+  (https://www.pivotaltracker.com/story/show/158441699)
+
+v1.4.28 Jun 05, 2018
+=====================
+* Support packaging with associated stacks
+  (https://www.pivotaltracker.com/story/show/153256959)
+
+* Add nginx 1.15.0, remove nginx 1.13.12
+  (https://www.pivotaltracker.com/story/show/158114558)
+
+v1.4.27 Apr 16, 2018
+=====================
+
+* Add nginx 1.13.12, remove nginx 1.13.11
+  (https://www.pivotaltracker.com/story/show/156657474)
+
+v1.4.26 Apr 09, 2018
+=====================
+
+* Add nginx 1.13.11, remove nginx 1.13.10
+  (https://www.pivotaltracker.com/story/show/156471809)
+
+
+v1.4.25 Apr 03, 2018
+=====================
+
+* Add nginx 1.13.10, remove nginx 1.13.9
+  (https://www.pivotaltracker.com/story/show/156133474)
+  (https://www.pivotaltracker.com/story/show/156134095)
+
+v1.4.24 Mar 09, 2018
+=====================
+
+* Use manifest cache downloads
+  (https://www.pivotaltracker.com/story/show/155405429)
+
+v1.4.23 Feb 26, 2018
+=====================
+
+* Document new buildpack-packager build command
+  (https://www.pivotaltracker.com/story/show/155223266)
+
+* Add nginx 1.13.9, remove nginx 1.13.8
+  (https://www.pivotaltracker.com/story/show/155362465)
+
+v1.4.22 Feb 09, 2018
+=====================
+
+* Enable manifest override yml
+  (https://www.pivotaltracker.com/story/show/153614649)
+
+* Enabling custom 404 pages
+  (https://www.pivotaltracker.com/story/show/151158550)
+
+* Add missing fixture
+  (https://www.pivotaltracker.com/story/show/150296977)
+
+* Warn staticfile buildpack users when override nginx.conf
+  (https://www.pivotaltracker.com/story/show/150296977)
+
+* Improve information about running integration tests
+  (https://www.pivotaltracker.com/story/show/154216032)
+
+* fixed bug with json handling in credentials in dynatrace hook
+  (https://www.pivotaltracker.com/story/show/154240737)
+
+v1.4.21 Jan 09, 2018
+=====================
+
+* Add nginx 1.13.8, remove nginx 1.13.7
+  (https://www.pivotaltracker.com/story/show/153910485)
+
+* Improvements to Dynatrace extension
+  - Merge pull request #129 from arthfl
+  (https://www.pivotaltracker.com/story/show/153813557)
+
+v1.4.20 Nov 29, 2017
+=====================
+
+* Warn about nginx/conf on root=="."
+  [#153059645]
+
+* Add nginx 1.13.7, remove nginx 1.13.6
+  (https://www.pivotaltracker.com/story/show/153060280)
+
+* Simplify build/test scripts to make tests easier to run
+  - Merge pull request #119 from rakrup/readlink_fix_for_mac
+  (https://www.pivotaltracker.com/story/show/151293706)
+
+v1.4.19 Nov 06, 2017
+=====================
+
+* Verify dependency downloads using sha256 instead of md5
+  (https://www.pivotaltracker.com/story/show/151913767)
+
+* Store profile.d dir outside app directory on recent BAL
+  (https://www.pivotaltracker.com/story/show/151381713)
+
+* Move nginx directives inside location block
+  - Being outside caused an unintended interaction between "pushstate" and a doubly nested location block
+  - Adding pushstate_and_proxy_pass test
+  (https://www.pivotaltracker.com/story/show/152312644)
+
+v1.4.18 Oct 17, 2017
+=====================
+
+* Revert change to stdout logging
+  Not all versions of garden support writing to /dev/stdout
+  (https://www.pivotaltracker.com/story/show/151737300)
+
+v1.4.17 Oct 17, 2017
+=====================
+
+* Add nginx 1.13.6, remove nginx 1.13.5
+  (https://www.pivotaltracker.com/story/show/151849194)
+
+* Use /dev/stderr and /dev/stdout directly
+  (https://www.pivotaltracker.com/story/show/151737300)
+
+v1.4.16 Sep 27, 2017
+=====================
+
+* Move nginx config directives from location to server block
+  (https://www.pivotaltracker.com/story/show/148630045)
+
+* Use HTTPS instead of HTTP links in readme and inline explanations
+  (https://www.pivotaltracker.com/story/show/150938423)
+
+v1.4.15 Sep 08, 2017
+=====================
+
+* Add nginx 1.13.5, remove nginx 1.13.4
+  (https://www.pivotaltracker.com/story/show/150814564)
+
+* Move nginx.conf instead of copying
+  (https://www.pivotaltracker.com/story/show/150757043)
+
+v1.4.14 Aug 21, 2017
+=====================
+
+* Add opt-in richer HSTS support.
+  (https://www.pivotaltracker.com/story/show/149979433)
+
+v1.4.13 Aug 14, 2017
+=====================
+
+* Add nginx 1.13.4, remove nginx 1.13.3
+
+v1.4.12 Jul 24, 2017
+=====================
+
+* Override existing public directory during copy
+  (https://www.pivotaltracker.com/story/show/148930437)
+
+v1.4.11 Jul 13, 2017
+=====================
+
+* Add nginx 1.13.3, remove nginx 1.13.2
+  (https://www.pivotaltracker.com/story/show/148679499)
+
+v1.4.10 Jul 11, 2017
+=====================
+
+* Add nginx 1.13.2, remove nginx 1.13.1
+  (https://www.pivotaltracker.com/story/show/147928939)
+
+v1.4.9 Jun 15, 2017
+====================
+
+* Add nginx 1.13.1, remove nginx 1.11.13
+  (https://www.pivotaltracker.com/story/show/146651429)
+
+v1.4.8 Jun 06, 2017
+====================
+
+* Convert to online-only distribution.
+  - See: http://cf-dev.70369.x6.nabble.com/cf-dev-Discontinuing-Distribution-of-the-Offline-Buildpacks-td6732.html
+  (https://www.pivotaltracker.com/story/show/146375487)
+
+v1.4.7 Jun 05, 2017
+====================
+
+* Warn users that location_include must set root
+  (https://www.pivotaltracker.com/story/show/146409581)
+
+v1.4.6 May 15, 2017
+====================
+
+* Add Dynatrace OneAgent integration to staticfile buildpack
+  (https://www.pivotaltracker.com/story/show/144856601)
+
+* Add multiple buildpack support
+  (https://www.pivotaltracker.com/story/show/142852459)
+
+v1.4.5 Apr 20, 2017
+====================
+
+* Use boot.sh for start command
+  (https://www.pivotaltracker.com/story/show/143954449)
+
+v1.4.4 Apr 10, 2017
+====================
+
+* Add nginx 1.11.13, remove nginx 1.11.12
+  (https://www.pivotaltracker.com/story/show/143052671)
+
+* Fix bug with "run-task", where by tasks would not exit
+  (https://www.pivotaltracker.com/story/show/142863193)
+
+* Packaging a uncached buildpack now compiles bin/compile
+  (https://www.pivotaltracker.com/story/show/143040749)
+
+* Fix bug with "basic-auth" when a Staticfile is not provided
+  (https://www.pivotaltracker.com/story/show/143385535)
+
+v1.4.2 Mar 29, 2017
+====================
+
+* Fix bug in untar
+  (https://www.pivotaltracker.com/story/show/142699861)
+
+v1.4.1 Mar 27, 2017
+====================
+
+* Add nginx 1.11.12, remove nginx 1.11.11
+  (https://www.pivotaltracker.com/story/show/142401589)
+
+v1.4.0 Mar 22, 2017
+=====================
+
+* Hook Support
+  Add support for BeforeCompile and AfterCompile hooks
+  (https://www.pivotaltracker.com/story/show/141975819)
+
+* Add support for supply buildpacks
+  (https://www.pivotaltracker.com/story/show/141617933)
+
+* Add nginx 1.11.11, remove nginx 1.11.10
+  (https://www.pivotaltracker.com/story/show/142148789)
+
+* Implement staticfile buildpack in Go
+  - there should be no change in observed behavior
+  (https://www.pivotaltracker.com/story/show/139019387)
+
+v1.3.18 Feb 24, 2017
+=====================
+
+* Add nginx 1.11.10, remove nginx 1.11.9
+  (https://www.pivotaltracker.com/story/show/139833155)
+
+* Allow users to include arbitrary nginx configuration
+  (https://www.pivotaltracker.com/story/show/136370663)
+
+v1.3.17 Feb 09, 2017
+=====================
+
+* Add MIME types for TTF, WOFF, WOFF2 fonts
+  (https://www.pivotaltracker.com/story/show/138621515)
+
+* Add nginx 1.11.9, remove nginx 1.11.8
+  (https://www.pivotaltracker.com/story/show/138243621)
+
+v1.3.16 Jan 10, 2017
+=====================
+
+* Catch excecptions from buildpack version warning scripts
+  - Under some non-standard CF deployment configurations, it was possible for these scripts to
+  error out. As they are purely informative, this should never happen.
+  (https://www.pivotaltracker.com/story/show/137351597)
+
+v1.3.15 Jan 06, 2017
+=====================
+
+* Add new Slack icon to README
+  (https://www.pivotaltracker.com/story/show/136438447)
+
+* Add nginx 1.11.8, remove nginx 1.11.6
+  (https://www.pivotaltracker.com/story/show/136691285)
+  (https://www.pivotaltracker.com/story/show/136041771)
+
+* Correct copyright NOTICE
+  (https://www.pivotaltracker.com/story/show/136141035)
+
+* Add new version warning to staticfile buildpack
+  (https://www.pivotaltracker.com/story/show/135234395)
+
+* Use regexes for url_to_dependency mapping for nginx
+  - Remove hardcoded version string from url_to_dependency mapping
+  (https://www.pivotaltracker.com/story/show/126394939)
+
+v1.3.14 Dec 01, 2016
+=====================
+
+* Add default_versions support to buildpack
+  (https://www.pivotaltracker.com/story/show/126394939)
+
+* Enable 'Vary: Accept-Encoding' header
+  (https://www.pivotaltracker.com/story/show/129364025)
+
+* Add nginx 1.11.6, remove nginx 1.11.5
+  (https://www.pivotaltracker.com/story/show/134361411)
+
+* Rebuild and change path for nginx binary
+  - We identified a potential, but unlikely, attack vector in our continuous
+    integration system. Our own auditing strongly suggests that this attack
+    vector was not taken advantage of. However, out of an abundance of caution,
+    we are rebuilding all buildpack dependencies that we maintain.
+
+v1.3.13 Nov 09, 2016
+=====================
+
+* Option to enable hosting of hidden dot-files
+  - To enable hosting of hidden dot-files, add the line:
+      'host_dot_files: true'
+    to the Staticfile
+  - If this line is not present, no hiddne dot-files will be served
+  (https://www.pivotaltracker.com/story/show/130223889)
+
+* Enable HSTS support
+  - To enable HSTS support, add the line:
+      'http_strict_transport_security: true'
+    to the Staticfile
+  (https://www.pivotaltracker.com/story/show/128980925)
+
+* Don't write hashed credentials from Staticfile.auth to the logs
+  (https://www.pivotaltracker.com/story/show/130048269)
+
+v1.3.12 Oct 19, 2016
+=====================
+
+* Add nginx 1.11.5, remove nginx 1.11.4
+  (https://www.pivotaltracker.com/story/show/132088805)
+
+* staticfile-buildpack BOSH release now available on bosh.io at
+  http://bosh.io/releases/github.com/cloudfoundry/staticfile-buildpack-release
+  (https://www.pivotaltracker.com/story/show/130040305)
+
+v1.3.11 Sep 19, 2016
+=====================
+
+* Add nginx 1.11.4, remove nginx 1.11.3
+  (https://www.pivotaltracker.com/story/show/130296431)
+
+* Redact credentials from URLs in a cached buildpack's output
+  (https://www.pivotaltracker.com/story/show/127357631)
+
+* Redact credentials from URLs in an uncached buildpack's output
+  (https://www.pivotaltracker.com/story/show/126514693)
+
 v1.3.10 Jul 28, 2016
 =====================
 
